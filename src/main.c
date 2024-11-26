@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:14:25 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/26 13:45:18 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 15:50:31 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	destroy_all(t_arg *arg)
 	i = -1;
 	while (++i < arg->nb_philo)
 		pthread_mutex_destroy(&arg->forks[i].fork);
-	pthread_mutex_destroy(&arg->flag_mutex);
-	pthread_mutex_destroy(&arg->rdy_mutex);
-	pthread_mutex_destroy(&arg->write_mutex);
+	pthread_mutex_destroy(&arg->value_mutex);
 	free(arg->philos);
 	free(arg->forks);
 	free(arg);

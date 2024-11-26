@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:30:49 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/26 13:46:49 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 14:59:18 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	write_status(t_philo *philo, char *status)
 {
-	pthread_mutex_lock(&philo->arg->write_mutex);
+	pthread_mutex_lock(&philo->arg->value_mutex);
 	if (!philo->arg->flag)
 		printf(D_GREEN "[%ld] %ld %s\n" D_RESET,
 			get_time() - philo->arg->start,
 			philo->id,
 			status);
-	pthread_mutex_unlock(&philo->arg->write_mutex);
+	pthread_mutex_unlock(&philo->arg->value_mutex);
 }
 
 long	get_time(void)

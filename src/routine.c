@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:46:05 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/26 13:48:14 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 14:55:55 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ static int	check_if_one_philo(t_philo *philo)
 	return (0);
 }
 
-bool	get_value(bool *value, t_arg *data)
-{
-	bool	v;
-
-	pthread_mutex_lock(&data->write_mutex);
-	v = *value;
-	pthread_mutex_unlock(&data->write_mutex);
-	return (v);
-}
-
 void	*routine(void *data)
 {
 	t_philo			*philo;
@@ -45,14 +35,16 @@ void	*routine(void *data)
 		return (NULL);
 	if (philo->id % 2)
 		usleep(15000);
-	while (!get_value(&arg->flag, arg))
+	while (!get_bool(&arg->flag, arg))
 	{
 		pthread_mutex_lock(&philo->l_fork->fork);
 		write_status(philo, "has taken a fork");
 		pthread_mutex_lock(&philo->r_fork->fork);
 		write_status(philo, "has taken a fork");
+		pthread_mutex_lock(&arg->value_mutex);
 		philo->last_meal = get_time();
 		philo->nb_meals++;
+		pthread_mutex_unlock(&arg->value_mutex);
 		write_status(philo, "is eating");
 		usleep(arg->time_to_eat * 1000);
 		pthread_mutex_unlock(&philo->r_fork->fork);

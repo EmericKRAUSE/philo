@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:53:47 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/26 14:01:22 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 15:50:23 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ void	init_arg(int argc, char **argv, t_arg **arg)
 	(*arg)->start = get_time();
 	(*arg)->flag = false;
 	(*arg)->last_philo_rdy = false;
-	pthread_mutex_init(&(*arg)->rdy_mutex, NULL);
-	pthread_mutex_init(&(*arg)->write_mutex, NULL);
-	pthread_mutex_init(&(*arg)->flag_mutex, NULL);
+	pthread_mutex_init(&(*arg)->value_mutex, NULL);
 	if (argc == 6)
 		(*arg)->must_eat = ft_atoi(argv[5]);
 	else

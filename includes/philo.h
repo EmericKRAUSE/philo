@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:14:44 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/26 13:39:38 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 15:52:11 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ typedef struct s_arg
 	long			start;
 	bool			flag;
 	bool			last_philo_rdy;
-	pthread_mutex_t	flag_mutex;
-	pthread_mutex_t	rdy_mutex;
-	pthread_mutex_t	write_mutex;
+	pthread_mutex_t	value_mutex;
 	t_philo			*philos;
 	t_fork			*forks;
 	pthread_t		monitor_thread;
@@ -90,7 +88,8 @@ void	*routine(void *data);
 //
 
 // utils.c
-bool	get_value(bool *value, t_arg *data);
+bool	get_bool(bool *value, t_arg *data);
+long	get_long(long *value, t_arg *data);
 void	write_status(t_philo *philo, char *status);
 long	get_time(void);
 int		ft_atoi(const char *str);

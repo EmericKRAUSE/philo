@@ -3,6 +3,7 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 
 SRC			=	./src/main.c\
+				./src/get_value.c\
 				./src/init.c\
 				./src/monitor.c\
 				./src/parsing.c\

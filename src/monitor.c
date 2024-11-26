@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:49:07 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/26 13:57:54 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 14:57:51 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	is_finished(t_arg *arg)
 	int	i;
 
 	i = 0;
-	while (i < arg->nb_philo)
+	while (i < get_long(&arg->nb_philo, arg))
 	{
-		if (arg->philos[i].nb_meals < arg->must_eat)
+		if (get_long(&arg->philos[i].nb_meals, arg) < get_long(&arg->must_eat, arg))
 			return (0);
 		i++;
 	}
@@ -33,20 +33,20 @@ void	*monitor(void *data)
 	long	time_since_last_meal;
 
 	arg = (t_arg *)data;
-	while (!get_value(&arg->flag, arg))
+	while (!get_bool(&arg->flag, arg))
 	{
 		i = -1;
-		while (++i < arg->nb_philo)
+		while (++i < get_long(&arg->nb_philo, arg))
 		{
-			time_since_last_meal = get_time() - arg->philos[i].last_meal;
-			if ((time_since_last_meal > arg->time_to_die)
-				|| (is_finished(arg) && arg->must_eat != -1))
+			time_since_last_meal = get_time() - get_long(&arg->philos[i].last_meal, arg);
+			if ((time_since_last_meal > get_long(&arg->time_to_die, arg))
+				|| (is_finished(arg) && get_long(&arg->must_eat, arg) != -1))
 			{
-				if (time_since_last_meal > arg->time_to_die)
+				if (time_since_last_meal > get_long(&arg->time_to_die, arg))
 					write_status(&arg->philos[i], "died");
-				pthread_mutex_lock(&arg->flag_mutex);
+				pthread_mutex_lock(&arg->value_mutex);
 				arg->flag = 1;
-				pthread_mutex_unlock(&arg->flag_mutex);
+				pthread_mutex_unlock(&arg->value_mutex);
 			}
 		}
 	}
