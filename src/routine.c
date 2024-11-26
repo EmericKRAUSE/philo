@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:46:05 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/26 16:03:49 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:27:06 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	*routine(void *data)
 	if (check_if_one_philo(philo))
 		return (NULL);
 	if (philo->id % 2)
-		usleep(15000);
+		usleep(1500);
 	while (!get_bool(&arg->flag, arg))
 	{
 		eating_process(arg, philo);

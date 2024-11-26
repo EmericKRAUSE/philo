@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:53:47 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/26 15:50:23 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:20:10 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_philos_and_forks(t_arg **arg)
 	i = -1;
 	while (++i < (*arg)->nb_philo)
 	{
-		(*arg)->philos[i].id = i;
+		(*arg)->philos[i].id = i + 1;
 		(*arg)->forks[i].id = i;
 		(*arg)->philos[i].last_meal = (*arg)->start;
 		(*arg)->philos[i].nb_meals = 0;

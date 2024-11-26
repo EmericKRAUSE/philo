@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:14:44 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/26 15:52:11 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:29:19 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 //**********/
 // defines
-# define D_RED	"\033[31m"
-# define D_GREEN "\033[32m"
+# define D_RED		"\033[31m"
+# define D_GREEN	"\033[32m"
 # define D_RESET	"\033[0m"
 
 //**********/
