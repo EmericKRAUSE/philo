@@ -6,15 +6,15 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:55:24 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/26 14:56:00 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:04:52 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-long get_long(long *value, t_arg *data)
+long	get_long(long *value, t_arg *data)
 {
-	long v;
+	long	v;
 
 	pthread_mutex_lock(&data->value_mutex);
 	v = *value;
@@ -22,9 +22,9 @@ long get_long(long *value, t_arg *data)
 	return (v);
 }
 
-bool get_bool(bool *value, t_arg *data)
+bool	get_bool(bool *value, t_arg *data)
 {
-	bool v;
+	bool	v;
 
 	pthread_mutex_lock(&data->value_mutex);
 	v = *value;
