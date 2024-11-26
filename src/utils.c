@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:30:49 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/20 20:05:49 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 13:46:49 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@ void	write_status(t_philo *philo, char *status)
 	pthread_mutex_lock(&philo->arg->write_mutex);
 	if (!philo->arg->flag)
 		printf(D_GREEN "[%ld] %ld %s\n" D_RESET,
-			   get_time() - philo->arg->start,
-			   philo->id,
-			   status);
+			get_time() - philo->arg->start,
+			philo->id,
+			status);
 	pthread_mutex_unlock(&philo->arg->write_mutex);
 }
 
-long get_time()
+long	get_time(void)
 {
-	struct timeval time;
+	struct timeval	time;
 
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int sign;
-	int result;
+	int	sign;
+	int	result;
 
 	sign = 1;
 	result = 0;

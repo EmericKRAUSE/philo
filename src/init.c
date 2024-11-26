@@ -6,13 +6,13 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:53:47 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/20 20:05:08 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 14:01:22 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void init_arg(int argc, char **argv, t_arg **arg)
+void	init_arg(int argc, char **argv, t_arg **arg)
 {
 	(*arg)->nb_philo = ft_atoi(argv[1]);
 	(*arg)->time_to_die = ft_atoi(argv[2]);
@@ -30,14 +30,14 @@ void init_arg(int argc, char **argv, t_arg **arg)
 		(*arg)->must_eat = -1;
 }
 
-void init_philos_and_forks(t_arg **arg)
+void	init_philos_and_forks(t_arg **arg)
 {
-	int i;
+	int	i;
 
 	(*arg)->philos = malloc(sizeof(t_philo) * (*arg)->nb_philo);
 	(*arg)->forks = malloc(sizeof(t_fork) * (*arg)->nb_philo);
 	if (!(*arg)->philos || !(*arg)->forks)
-		return;
+		return ;
 	i = -1;
 	while (++i < (*arg)->nb_philo)
 	{

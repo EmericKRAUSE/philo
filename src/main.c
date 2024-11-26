@@ -6,11 +6,26 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:14:25 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/20 19:48:41 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/26 13:45:18 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
+
+void	destroy_all(t_arg *arg)
+{
+	int	i;
+
+	i = -1;
+	while (++i < arg->nb_philo)
+		pthread_mutex_destroy(&arg->forks[i].fork);
+	pthread_mutex_destroy(&arg->flag_mutex);
+	pthread_mutex_destroy(&arg->rdy_mutex);
+	pthread_mutex_destroy(&arg->write_mutex);
+	free(arg->philos);
+	free(arg->forks);
+	free(arg);
+}
 
 int	main(int argc, char **argv)
 {
@@ -29,20 +44,14 @@ int	main(int argc, char **argv)
 	i = -1;
 	while (++i < arg->nb_philo)
 	{
-		if (pthread_create(&arg->philos[i].philo, NULL, routine, (void *)&arg->philos[i]) != 0)
+		if (pthread_create(&arg->philos[i].philo, NULL, routine,
+				(void *)&arg->philos[i]) != 0)
 			return (free(arg), ft_error("failed to create thread"), 1);
 	}
 	i = -1;
 	while (++i < arg->nb_philo)
 		pthread_join(arg->philos[i].philo, NULL);
 	pthread_join(arg->monitor_thread, NULL);
-	i = -1;
-	while (++i < arg->nb_philo)
-		pthread_mutex_destroy(&arg->forks[i].fork);
-	pthread_mutex_destroy(&arg->flag_mutex);
-	pthread_mutex_destroy(&arg->rdy_mutex);
-	pthread_mutex_destroy(&arg->write_mutex);
-	free(arg->philos);
-	free(arg->forks);
-	return (free(arg), 0);
+	destroy_all(arg);
+	return (0);
 }
