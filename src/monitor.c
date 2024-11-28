@@ -6,7 +6,7 @@
 /*   By: ekrause <emeric.yukii@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:49:07 by ekrause           #+#    #+#             */
-/*   Updated: 2024/11/26 16:04:33 by ekrause          ###   ########.fr       */
+/*   Updated: 2024/11/27 16:21:17 by ekrause          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	*monitor(void *data)
 		i = -1;
 		while (++i < get_long(&arg->nb_philo, arg))
 		{
+			usleep(5000);
 			time_since_last_meal = get_time()
 				- get_long(&arg->philos[i].last_meal, arg);
 			if ((time_since_last_meal > get_long(&arg->time_to_die, arg))
